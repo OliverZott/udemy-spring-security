@@ -4,7 +4,7 @@
 </head>
 
 <body>
-	<h2>Heading of Demp Page</h2>
+	<h2>Heading of Demo Page</h2>
 
 
 	<hr>
