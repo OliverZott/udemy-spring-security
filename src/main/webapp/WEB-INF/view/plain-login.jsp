@@ -6,15 +6,13 @@
 
 <head>
 
-	<title>Custom Login Page</title>
+<title>Custom Login Page</title>
 
-	<style>
-		.failed {
-			color: red;
-		}
-	</style>
+<!-- Link to outsourced css file -->
+<link rel="stylesheet" type="text/css" href="css/demo.css">
 
 </head>
+
 
 <body>
 	<h3>Login</h3>

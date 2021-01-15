@@ -27,12 +27,16 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
 	 * error messages will be used!
 	 * 
 	 * Just enter context root to get to login page (with or without custom login)
+	 * 
+	 * 
+	 * "antMatchers" ...Configure Spring Security to allow unauthenticated requests
+	 * (permit all) to the "/css" directory
 	 */
 	@Override
 	public void configure(HttpSecurity httpSecurity) throws Exception {
 
-		httpSecurity.authorizeRequests().anyRequest().authenticated().and().formLogin().loginPage("/showMyLoginPage")
-				.loginProcessingUrl("/authenticateTheUser").permitAll();
+		httpSecurity.authorizeRequests().antMatchers("/css/**").permitAll().anyRequest().authenticated().and()
+				.formLogin().loginPage("/showMyLoginPage").loginProcessingUrl("/authenticateTheUser").permitAll();
 
 	}
 
