@@ -35,8 +35,15 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(HttpSecurity httpSecurity) throws Exception {
 
-		httpSecurity.authorizeRequests().antMatchers("/css/**").permitAll().anyRequest().authenticated().and()
-				.formLogin().loginPage("/showMyLoginPage").loginProcessingUrl("/authenticateTheUser").permitAll();
+		httpSecurity.authorizeRequests()
+				.antMatchers("/css/**").permitAll()		// for css folder
+				.anyRequest().authenticated()
+			.and()
+			.formLogin()
+				.loginPage("/showMyLoginPage")
+				.loginProcessingUrl("/authenticateTheUser")		// url provided by spring
+				.permitAll()
+			.and().logout().permitAll();				// gives logout support, which provides! default url (/logout)
 
 	}
 

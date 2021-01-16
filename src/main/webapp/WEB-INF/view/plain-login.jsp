@@ -25,6 +25,12 @@
 		<c:if test="${param.error != null}">
 			<i class="failed">Credentials invalid!</i>
 		</c:if>
+		
+		<!-- Check logout -->
+		<c:if test="${param.logout != null}">
+			<i class="">You are logged out</i>
+		</c:if>
+		
 
 
 		<!-- IMPORTANT: use "name=username/password" for Spring Security Filters -->
@@ -38,6 +44,9 @@
 		<input type="submit" value="Login" />
 
 	</form:form>
+	
+	
+	
 
 </body>
 
