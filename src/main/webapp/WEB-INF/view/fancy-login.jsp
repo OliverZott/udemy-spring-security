@@ -39,7 +39,7 @@
 				<div style="padding-top: 30px" class="panel-body">
 
 					<!-- Login Form -->
-					<form:form
+					<form
 						action="${pageContext.request.contextPath}/authenticateTheUser"
 						method="POST" class="form-horizontal">
 
@@ -86,7 +86,11 @@
 							</div>
 						</div>
 
-					</form:form>
+						<!-- If NOT using spring-security form:form we need to add token manually! -->
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
+
+					</form>
 
 				</div>
 
