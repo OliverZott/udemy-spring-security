@@ -3,38 +3,47 @@
 	uri="http://www.springframework.org/security/tags"%>
 
 
-
 <html>
 <head>
-<title>Title of Demo Page</title>
+	<title>Title of Demo Page</title>
 </head>
 
 <body>
-	<h2>Heading of Demo Page</h2>
+<h2>Heading of Demo Page</h2>
 
 
-	<hr>
+<hr>
 
-	<p>Hello guys and girls</p>
-	
-	<hr>
-	
-	<p>
+<p>Hello guys and girls</p>
+
+<hr>
+
+<p>
 	<!-- Display user name and role -->
 	User: <security:authentication property="principal.username"/>
 	<br> <br>
 	Roles: <security:authentication property="principal.authorities"/>
-	</p>
-	
-	<hr>
+</p>
 
-	<!-- Add form for logout button -->
-	<form:form action="${pageContext.request.contextPath}/logout"
-		method="POST">
+<p>
+	<a href="${pageContext.request.contextPath}/leaders">Manager Area</a>
+	Managers only.
+</p>
+<p>
+	<a href="${pageContext.request.contextPath}/systems">Admin Area</a>
+	Admins only.
+</p>
 
-		<input type="submit" value="Logout">
 
-	</form:form>
+<hr>
+
+<!-- Add form for logout button -->
+<form:form action="${pageContext.request.contextPath}/logout"
+		   method="POST">
+
+	<input type="submit" value="Logout">
+
+</form:form>
 </body>
 
 </html>

@@ -16,9 +16,10 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		User.UserBuilder users = User.withDefaultPasswordEncoder();
 
-		auth.inMemoryAuthentication().withUser(users.username("user1").password("pw1").roles("EMPLOYEE"))
-				.withUser(users.username("user2").password("pw2").roles("EMPLOYEE", "MANAGER"))
-				.withUser(users.username("user3").password("pw3").roles("MASZER", "EMPLOYEE"));
+		auth.inMemoryAuthentication()
+				.withUser(users.username("user1").password("pw1").roles("EMPLOYEE"))
+				.withUser(users.username("user2").password("pw2").roles("EMPLOYEE", "ADMIN"))
+				.withUser(users.username("user3").password("pw3").roles("EMPLOYEE", "MANAGER"));
 
 	}
 
@@ -36,9 +37,11 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(HttpSecurity httpSecurity) throws Exception {
 
 		httpSecurity.authorizeRequests()
-				.antMatchers("/css/**").permitAll()		// for css folder
-				.anyRequest().authenticated()
-			.and()
+				.antMatchers("/css/**").permitAll()        // for css folder
+				.antMatchers("/").hasRole("EMPLOYEE")
+				.antMatchers("/leaders/**").hasRole("MANAGER")
+				.antMatchers("/systems/**").hasRole("ADMIN")
+				.and()
 			.formLogin()
 				.loginPage("/showMyLoginPage")
 				.loginProcessingUrl("/authenticateTheUser")		// url provided by spring
