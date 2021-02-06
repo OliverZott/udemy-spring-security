@@ -25,15 +25,21 @@
 	Roles: <security:authentication property="principal.authorities"/>
 </p>
 
-<p>
-	<a href="${pageContext.request.contextPath}/leaders">Manager Area</a>
-	Managers only.
-</p>
-<p>
-	<a href="${pageContext.request.contextPath}/systems">Admin Area</a>
-	Admins only.
-</p>
+<hr>
 
+<security:authorize access="hasRole('MANAGER')">
+	<p>
+		<a href="${pageContext.request.contextPath}/leaders">Manager Area</a>
+		Managers only.
+	</p>
+</security:authorize>
+
+<security:authorize access="hasRole('ADMIN')">
+	<p>
+		<a href="${pageContext.request.contextPath}/systems">Admin Area</a>
+		Admins only.
+	</p>
+</security:authorize>
 
 <hr>
 
