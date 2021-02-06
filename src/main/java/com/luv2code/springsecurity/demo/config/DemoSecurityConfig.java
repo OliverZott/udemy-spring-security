@@ -42,11 +42,12 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/leaders/**").hasRole("MANAGER")
 				.antMatchers("/systems/**").hasRole("ADMIN")
 				.and()
-			.formLogin()
+				.formLogin()
 				.loginPage("/showMyLoginPage")
-				.loginProcessingUrl("/authenticateTheUser")		// url provided by spring
+				.loginProcessingUrl("/authenticateTheUser")        // url provided by spring
 				.permitAll()
-			.and().logout().permitAll();				// gives logout support, which provides! default url (/logout)
+				.and().logout().permitAll()            // gives logout support, which provides! default url (/logout)
+				.and().exceptionHandling().accessDeniedPage("/access-denied");
 
 	}
 
