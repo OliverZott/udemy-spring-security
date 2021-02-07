@@ -14,7 +14,6 @@ public class DemoController {
 	 * Due to View-Resolver in "DemoAppConfig.java" it will be completed:
 	 * /WEB-INF/view/home.jsp
 	 * 
-	 * @return
 	 */
 	@GetMapping("/")
 	public String showHome() {

@@ -63,7 +63,7 @@ public class DemoAppConfig implements WebMvcConfigurer {
 		securityDataSource.setMaxPoolSize(Integer.parseInt(env.getProperty("connection.pool.maxPoolSize")));
 		securityDataSource.setMaxIdleTime(Integer.parseInt(env.getProperty("connection.pool.maxIdleTime")));
 
-		return null;
+		return securityDataSource;
 	}
 
 
