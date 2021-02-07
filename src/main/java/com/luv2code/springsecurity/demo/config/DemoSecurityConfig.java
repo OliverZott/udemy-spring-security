@@ -1,25 +1,29 @@
 package com.luv2code.springsecurity.demo.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
+
+import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
 public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
 
+	@Autowired
+	private DataSource securityDataSource;
+
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-		User.UserBuilder users = User.withDefaultPasswordEncoder();
-
-		auth.inMemoryAuthentication()
-				.withUser(users.username("user1").password("pw1").roles("EMPLOYEE"))
-				.withUser(users.username("user2").password("pw2").roles("EMPLOYEE", "ADMIN"))
-				.withUser(users.username("user3").password("pw3").roles("EMPLOYEE", "MANAGER"));
+		/*
+		 * No need to hardcode users; Spring knows about db tables (cause set in config)
+		 * and we use the standard table-schema
+		 */
+		auth.jdbcAuthentication().dataSource(securityDataSource);
 
 	}
 
